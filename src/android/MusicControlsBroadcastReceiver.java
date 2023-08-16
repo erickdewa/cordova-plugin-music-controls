@@ -129,13 +129,15 @@ public class MusicControlsBroadcastReceiver extends BroadcastReceiver {
 				this.cb.success("{\"message\": \"music-controls-destroy\"}");
 				this.cb = null;
 				this.musicControls.destroyPlayerNotification();
+			} else if (message.equals("music-controls-seek-to")) {
+				// Seek To
+				int seekPosition = intent.getIntExtra("seek_position", 0);
+				this.cb.success("{\"message\": \"music-controls-seek-to\", \"position\": " + seekPosition + "}");
+				this.cb = null;
 			} else {
 				this.cb.success("{\"message\": \"" + message + "\"}");
 				this.cb = null;
 			}
-
-
 		}
-
 	}
 }

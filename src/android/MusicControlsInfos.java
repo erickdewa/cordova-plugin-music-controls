@@ -14,6 +14,8 @@ public class MusicControlsInfos{
 	public boolean hasPrev;
 	public boolean hasNext;
 	public boolean hasClose;
+	public String duration;
+	public String elapsed;
 	public boolean dismissable;
 	public String playIcon;
 	public String pauseIcon;
@@ -27,9 +29,11 @@ public class MusicControlsInfos{
 		
 		this.track = params.getString("track");
 		this.artist = params.getString("artist");
-    		this.album = params.getString("album");
+		this.album = params.getString("album");
 		this.ticker = params.getString("ticker");
 		this.cover = params.getString("cover");
+		this.duration = params.getString("duration");
+		this.elapsed = Integer.toString(params.getInt("elapsed"));
 		this.isPlaying = params.getBoolean("isPlaying");
 		this.hasPrev = params.getBoolean("hasPrev");
 		this.hasNext = params.getBoolean("hasNext");
@@ -42,5 +46,4 @@ public class MusicControlsInfos{
 		this.closeIcon = params.getString("closeIcon");
 		this.notificationIcon = params.getString("notificationIcon");
 	}
-
 }
