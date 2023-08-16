@@ -1,14 +1,14 @@
 {
-  "name": "cordova-plugin-music-controls2",
-  "version": "3.0.7",
+  "name": "cordova-plugin-music-controls-go",
+  "version": "0.0.1",
   "description": "Music controls for Cordova apps",
   "cordova": {
-    "id": "cordova-plugin-music-controls2",
+    "id": "cordova-plugin-music-controls-go",
     "platforms": ["android", "windows", "ios"]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ghenry22/cordova-plugin-music-controls2.git"
+    "url": "git+https://github.com/erickdewa/cordova-plugin-music-controls-go.git"
   },
   "keywords": [
     "cordova",
@@ -18,21 +18,24 @@
     "media",
     "plugin",
     "notification",
+    "lockscreen",
+    "now",
+    "playing",
     "ecosystem:cordova",
     "cordova-android",
-    "cordova-windows"
+    "cordova-windows",
+    "cordova-ios"
   ],
   "engines": [
     {
       "name": "cordova",
-      "version": ">=6.0.0"
+      "version": ">=4.0.0"
     }
   ],
-  "author": "ghenry22",
+  "author": "erickdewa",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ghenry22/cordova-plugin-music-controls2/issues"
+    "url": "https://github.com/erickdewa/cordova-plugin-music-controls-go/issues"
   },
-  "homepage":
-    "https://github.com/ghenry22/cordova-plugin-music-controls2#readme"
+  "homepage": "https://github.com/erickdewa/cordova-plugin-music-controls-go#readme"
 }
