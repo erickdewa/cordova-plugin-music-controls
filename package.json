@@ -4,7 +4,11 @@
   "description": "Music controls for Cordova apps",
   "cordova": {
     "id": "cordova-plugin-music-controls-go",
-    "platforms": ["android", "windows", "ios"]
+    "platforms": [
+      "android",
+      "windows",
+      "ios"
+    ]
   },
   "repository": {
     "type": "git",
@@ -37,5 +41,9 @@
   "bugs": {
     "url": "https://github.com/erickdewa/cordova-plugin-music-controls-go/issues"
   },
-  "homepage": "https://github.com/erickdewa/cordova-plugin-music-controls-go#readme"
+  "homepage": "https://github.com/erickdewa/cordova-plugin-music-controls-go#readme",
+  "main": "/www/MusicControls.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

@@ -35,12 +35,11 @@ public class MusicControlsNotification {
     private int notificationID;
     protected MusicControlsInfos infos;
     private Bitmap bitmapCover;
-    private String CHANNEL_ID;
+    private String CHANNEL_ID ="cordova-music-channel-id";
     private Token token;
 
     // Public Constructor
     public MusicControlsNotification(Activity cordovaActivity, int id, Token token) {
-        this.CHANNEL_ID = UUID.randomUUID().toString();
         this.notificationID = id;
         this.cordovaActivity = cordovaActivity;
         Context context = cordovaActivity;
