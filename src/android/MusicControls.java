@@ -244,6 +244,7 @@ public class MusicControls extends CordovaPlugin {
             }
         } else if (action.equals("destroy")) {
             if (this.hasInstance){
+                this.hasInstance = false;
                 this.notification.destroy();
                 this.mMessageReceiver.stopListening();
                 Log.d("Eric", "Eric Destroy.");
@@ -266,6 +267,7 @@ public class MusicControls extends CordovaPlugin {
 
     @Override
     public void onDestroy() {
+        this.hasInstance = false;
         this.notification.destroy();
         this.mMessageReceiver.stopListening();
         this.unregisterMediaButtonEvent();
