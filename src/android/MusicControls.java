@@ -205,8 +205,9 @@ public class MusicControls extends CordovaPlugin {
                         setMediaPlaybackState(PlaybackStateCompat.STATE_PAUSED);
 
                     notification.updateIsPlaying(infos.isPlaying);
-                    
+
                     callbackContext.success("success");
+                    logger.config("Eric Create.");
                 }
             });
         } else if (action.equals("updateElapsed")) {
@@ -215,6 +216,7 @@ public class MusicControls extends CordovaPlugin {
             this.notification.updateElapsed(setElapsed);
             setMediaPlaybackState(PlaybackStateCompat.STATE_PLAYING);
             callbackContext.success("success");
+            logger.config("Eric Update Elapsed.");
         } else if (action.equals("updateIsPlaying")) {
             final JSONObject params = args.getJSONObject(0);
             final boolean isPlaying = params.getBoolean("isPlaying");
@@ -225,6 +227,7 @@ public class MusicControls extends CordovaPlugin {
             else
                 setMediaPlaybackState(PlaybackStateCompat.STATE_PAUSED);
 
+            logger.config("Eric Update Is Playing.");
             callbackContext.success("success");
         } else if (action.equals("updateDismissable")) {
             final JSONObject params = args.getJSONObject(0);
@@ -234,6 +237,7 @@ public class MusicControls extends CordovaPlugin {
         } else if (action.equals("destroy")) {
             this.notification.destroy();
             this.mMessageReceiver.stopListening();
+            logger.config("Eric Destroy.");
             callbackContext.success("success");
         } else if (action.equals("watch")) {
             this.registerMediaButtonEvent();
@@ -243,6 +247,7 @@ public class MusicControls extends CordovaPlugin {
                     mMessageReceiver.setCallback(callbackContext);
                 }
             });
+            logger.config("Eric Watch.");
         }
         return true;
     }
