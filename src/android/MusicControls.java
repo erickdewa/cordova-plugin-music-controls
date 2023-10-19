@@ -54,6 +54,7 @@ public class MusicControls extends CordovaPlugin {
     private android.media.session.MediaSession.Token token;
     private int setElapsed = 0;
     private long startElapsedAt = 0;
+    private boolean hasInstance = false;
 
     private Activity cordovaActivity;
 
@@ -170,6 +171,7 @@ public class MusicControls extends CordovaPlugin {
         final Activity activity = this.cordova.getActivity();
 
         if (action.equals("create")) {
+            this.hasInstance = true;
             final MusicControlsInfos infos = new MusicControlsInfos(args);
             final MediaMetadataCompat.Builder metadataBuilder = new MediaMetadataCompat.Builder();
 
@@ -211,43 +213,53 @@ public class MusicControls extends CordovaPlugin {
                 }
             });
         } else if (action.equals("updateElapsed")) {
-            final JSONObject params = args.getJSONObject(0);
-            setElapsed = params.getInt("elapsed") * 1000;
-            this.notification.updateElapsed(setElapsed);
-            setMediaPlaybackState(PlaybackStateCompat.STATE_PLAYING);
-            callbackContext.success("success");
-            Log.d("Eric", "Eric Update Elapsed.");
-        } else if (action.equals("updateIsPlaying")) {
-            final JSONObject params = args.getJSONObject(0);
-            final boolean isPlaying = params.getBoolean("isPlaying");
-            this.notification.updateIsPlaying(isPlaying);
-
-            if (isPlaying)
+            if (this.hasInstance){
+                final JSONObject params = args.getJSONObject(0);
+                setElapsed = params.getInt("elapsed") * 1000;
+                this.notification.updateElapsed(setElapsed);
                 setMediaPlaybackState(PlaybackStateCompat.STATE_PLAYING);
-            else
-                setMediaPlaybackState(PlaybackStateCompat.STATE_PAUSED);
+                callbackContext.success("success");
+                Log.d("Eric", "Eric Update Elapsed.");
+            }
+        } else if (action.equals("updateIsPlaying")) {
+            if (this.hasInstance){
+                final JSONObject params = args.getJSONObject(0);
+                final boolean isPlaying = params.getBoolean("isPlaying");
+                this.notification.updateIsPlaying(isPlaying);
 
-            Log.d("Eric", "Eric Update Is Playing.");
-            callbackContext.success("success");
+                if (isPlaying)
+                    setMediaPlaybackState(PlaybackStateCompat.STATE_PLAYING);
+                else
+                    setMediaPlaybackState(PlaybackStateCompat.STATE_PAUSED);
+
+                Log.d("Eric", "Eric Update Is Playing.");
+                callbackContext.success("success");
+            }
         } else if (action.equals("updateDismissable")) {
-            final JSONObject params = args.getJSONObject(0);
-            final boolean dismissable = params.getBoolean("dismissable");
-            this.notification.updateDismissable(dismissable);
-            callbackContext.success("success");
+            if (this.hasInstance){
+                final JSONObject params = args.getJSONObject(0);
+                final boolean dismissable = params.getBoolean("dismissable");
+                this.notification.updateDismissable(dismissable);
+                callbackContext.success("success");
+            }
         } else if (action.equals("destroy")) {
-            this.notification.destroy();
-            this.mMessageReceiver.stopListening();
-            Log.d("Eric", "Eric Destroy.");
-            callbackContext.success("success");
+            if (this.hasInstance){
+                this.notification.destroy();
+                this.mMessageReceiver.stopListening();
+                Log.d("Eric", "Eric Destroy.");
+                callbackContext.success("success");
+            }
         } else if (action.equals("watch")) {
-            this.registerMediaButtonEvent();
-            this.cordova.getThreadPool().execute(new Runnable() {
-                public void run() {
-                    mMediaSessionCallback.setCallback(callbackContext);
-                    mMessageReceiver.setCallback(callbackContext);
-                }
-            });
-            Log.d("Eric", "Eric Watch.");
+            if (this.hasInstance){
+                this.registerMediaButtonEvent();
+                this.cordova.getThreadPool().execute(new Runnable() {
+                    public void run() {
+                        mMediaSessionCallback.setCallback(callbackContext);
+                        mMessageReceiver.setCallback(callbackContext);
+                    }
+                });
+                Log.d("Eric", "Eric Watch.");
+            }
         }
         return true;
     }
