@@ -209,7 +209,6 @@ public class MusicControls extends CordovaPlugin {
                     notification.updateIsPlaying(infos.isPlaying);
 
                     callbackContext.success("success");
-                    Log.d("Eric", "Eric Create.");
                 }
             });
         } else if (action.equals("updateElapsed")) {
@@ -219,7 +218,6 @@ public class MusicControls extends CordovaPlugin {
                 this.notification.updateElapsed(setElapsed);
                 setMediaPlaybackState(PlaybackStateCompat.STATE_PLAYING);
                 callbackContext.success("success");
-                Log.d("Eric", "Eric Update Elapsed.");
             }
         } else if (action.equals("updateIsPlaying")) {
             if (this.hasInstance){
@@ -232,7 +230,6 @@ public class MusicControls extends CordovaPlugin {
                 else
                     setMediaPlaybackState(PlaybackStateCompat.STATE_PAUSED);
 
-                Log.d("Eric", "Eric Update Is Playing.");
                 callbackContext.success("success");
             }
         } else if (action.equals("updateDismissable")) {
@@ -247,7 +244,6 @@ public class MusicControls extends CordovaPlugin {
                 this.hasInstance = false;
                 this.notification.destroy();
                 this.mMessageReceiver.stopListening();
-                Log.d("Eric", "Eric Destroy.");
                 callbackContext.success("success");
             }
         } else if (action.equals("watch")) {
@@ -259,7 +255,6 @@ public class MusicControls extends CordovaPlugin {
                         mMessageReceiver.setCallback(callbackContext);
                     }
                 });
-                Log.d("Eric", "Eric Watch.");
             }
         }
         return true;
